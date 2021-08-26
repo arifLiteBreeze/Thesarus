@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\AuthToken;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class DatabaseSeeder extends Seeder
+class AuthTokenSeeder extends Seeder
 {
     /**
-     * Run all the table seeds.
+     * Run the auth_tokens table seeds.
      * 
      * @author Arif C A <aca@lbit.in>
      * 
@@ -18,10 +18,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            AuthTokenSeeder::class,
-            SynonymsPoolSeeder::class,
-            WordSeeder::class,
+        DB::table('auth_tokens')->insert([
+            'token' => 'f9bf78b9a18ce6d46a0cd2b0b86df9da',
         ]);
     }
 }

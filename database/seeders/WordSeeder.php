@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\AuthToken;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class DatabaseSeeder extends Seeder
+class WordSeeder extends Seeder
 {
     /**
-     * Run all the table seeds.
+     * Run the words table seeds.
      * 
      * @author Arif C A <aca@lbit.in>
      * 
@@ -18,10 +18,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            AuthTokenSeeder::class,
-            SynonymsPoolSeeder::class,
-            WordSeeder::class,
+        DB::table('words')->insert([
+            'word' => 'big',
+            'synonyms_pools_id' => 1,
         ]);
     }
 }
