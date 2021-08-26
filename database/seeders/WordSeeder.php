@@ -18,9 +18,15 @@ class WordSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('words')->insert([
-            'word' => 'big',
-            'synonyms_pools_id' => 1,
-        ]);
+        DB::table('words')->insert(
+            [
+                'word' => 'big',
+                'synonyms_pools_id' => 1,
+            ],
+            [
+                'word' => 'big',
+                'synonyms_pools_id' => 2,
+            ]
+        );
     }
 }
