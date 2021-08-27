@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Word;
 use Illuminate\Http\Request;
+use App\Services\WordService;
 
 class WordController extends Controller
 {
@@ -14,7 +15,8 @@ class WordController extends Controller
      */
     public function index()
     {
-        //
+        $wordService = new WordService;
+        return $wordService->allWords();
     }
 
     /**

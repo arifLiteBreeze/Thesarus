@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SynonymsPoolController;
+use App\Http\Controllers\WordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,10 @@ Route::group([
 ], function ($router) {
     Route::get('/', [SynonymsPoolController::class, 'find']);
     Route::post('/', [SynonymsPoolController::class, 'save']);
+});
+
+Route::group([
+    'prefix' => 'words'
+], function ($router) {
+    Route::get('/', [WordController::class, 'index']);
 });
