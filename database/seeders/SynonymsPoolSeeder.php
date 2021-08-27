@@ -19,8 +19,14 @@ class SynonymsPoolSeeder extends Seeder
     public function run()
     {
         DB::table('synonyms_pools')->insert([
-            'meaning' => 'Adj : large, great',
-            'synonyms' => 'colossal, fat, considerable, fat, full, huge'
+            [
+                'meaning' => 'Adj : large, great',
+                'synonyms' => 'colossal, fat, considerable, fat, full, huge'
+            ],
+            [
+                'meaning' => 'Adj : important',
+                'synonyms' => 'considerable, leading, main'
+            ]
         ]);
     }
 }

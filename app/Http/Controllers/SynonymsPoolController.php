@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\synonymsPool;
+use App\Models\Word;
 use Illuminate\Http\Request;
+use App\Http\Requests\SynonymsPoolSearchValidator;
+use App\Services\WordService;
 
 class SynonymsPoolController extends Controller
 {
@@ -12,74 +15,10 @@ class SynonymsPoolController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function find(SynonymsPoolSearchValidator $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\synonymsPool  $synonymsPool
-     * @return \Illuminate\Http\Response
-     */
-    public function show(synonymsPool $synonymsPool)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\synonymsPool  $synonymsPool
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(synonymsPool $synonymsPool)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\synonymsPool  $synonymsPool
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, synonymsPool $synonymsPool)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\synonymsPool  $synonymsPool
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(synonymsPool $synonymsPool)
-    {
-        //
+        $request->validated();
+        $wordService = new WordService;
+        return $wordService->searchSynonyms($request->word);
     }
 }
