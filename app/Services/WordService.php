@@ -40,7 +40,7 @@ class WordService
         return $synonyms;
     }
 
-     /**
+    /**
      * Fetch the list of synonyms of a related word
      * 
      * @author Arif C A <aca@lbit.in>
@@ -52,5 +52,19 @@ class WordService
     public function findRelatedWords($word)
     {
         return Word::where('word', 'LIKE' ,'%'.$word.'%')->with('synonyms_pools')->get();
+    }
+
+    /**
+     * Fetch the list of all words
+     * 
+     * @author Arif C A <aca@lbit.in>
+     * 
+     * @param Void
+     * 
+     * @return Array
+     */
+    public function allWords()
+    {
+        return Word::select('word')->groupBy('word')->orderBy('word', 'ASC')->paginate(15);
     }
 }
