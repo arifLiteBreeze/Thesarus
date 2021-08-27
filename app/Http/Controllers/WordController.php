@@ -9,9 +9,13 @@ use App\Services\WordService;
 class WordController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Return words with pagnation
+     * 
+     * @author Arif C A <aca@lbit.in>
+     * 
+     * @param Void 
+     * 
+     * @return Object
      */
     public function index()
     {
