@@ -9,6 +9,7 @@ class Word extends Model
 {
     use HasFactory;
     protected $hidden = ['created_at', 'updated_at'];
+    protected $fillable = ['word', 'synonyms_pools_id'];
 
     /**
      * synonyms_pools table relation

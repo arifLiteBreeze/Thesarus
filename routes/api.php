@@ -26,7 +26,7 @@ Route::group([
     'prefix' => 'synonyms'
 ], function ($router) {
     Route::get('/', [SynonymsPoolController::class, 'find']);
-    Route::post('/', [SynonymsPoolController::class, 'save']);
+    Route::post('/', [SynonymsPoolController::class, 'store']);
 });
 
 // Route for the APIs related to words
