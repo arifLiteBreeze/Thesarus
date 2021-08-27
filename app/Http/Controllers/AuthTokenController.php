@@ -4,9 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Models\AuthToken;
 use Illuminate\Http\Request;
+use App\Http\Requests\AuthTokenValidator;
+use App\Services\AuthTokenService;
 
 class AuthTokenController extends Controller
 {
+   
+    protected $authTokenService;
+
+    /**
+     * Contruct Company service
+     * 
+     * @author Arif C A <aca@lbit.in>
+     * 
+     * @param AuthTokenService as $authTokenService
+     * 
+     * @return void
+     */
+    public function __construct(AuthTokenService $authTokenService)
+    {
+        $this->authTokenService = $authTokenService;
+    }
+
+   
     /**
      * Display a listing of the resource.
      *
@@ -28,14 +48,18 @@ class AuthTokenController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Validate and save auth-token
+     * 
+     * @author Arif C A <aca@lbit.in>
+     * 
+     * @param Request
+     * 
+     * @return object
      */
-    public function store(Request $request)
+    public function store(AuthTokenValidator $request)
     {
-        //
+        $request->validated();
+        return $this->authTokenService->save($request->all());
     }
 
     /**

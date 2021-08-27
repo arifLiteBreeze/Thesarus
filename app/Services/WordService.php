@@ -31,13 +31,15 @@ class WordService
      */
     public function searchSynonyms($word)
     {
-        $synonyms = Word::where('word', $word)->with('synonyms_pools')->get();
-        if($synonyms->count() == 0)
+        $synonyms = array();
+        $synonymsList = Word::where('word', $word)->with('synonyms_pools')->get();
+        if($synonymsList->count() == 0)
         {
-            $synonyms['message'] = 'No records found';
             $synonyms['relatedWords']= $this->findRelatedWords($word);
         }
-        return $synonyms;
+        $synonyms['data'] = $synonymsList;
+        $synonyms['total'] = $synonymsList->count();
+        return (object)$synonyms;
     }
 
     /**

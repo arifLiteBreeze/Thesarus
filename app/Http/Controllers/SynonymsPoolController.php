@@ -11,9 +11,13 @@ use App\Services\WordService;
 class SynonymsPoolController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Fetch the list of serch words with synonyms
+     * 
+     * @author Arif C A <aca@lbit.in>
+     * 
+     * @param Request 
+     * 
+     * @return Object
      */
     public function find(SynonymsPoolSearchValidator $request)
     {
