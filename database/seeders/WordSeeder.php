@@ -24,9 +24,42 @@ class WordSeeder extends Seeder
                 'synonyms_pools_id' => 1,
             ],
             [
+                'word' => 'colossal',
+                'synonyms_pools_id' => 1,
+            ],
+            [
+                'word' => 'fat',
+                'synonyms_pools_id' => 1,
+            ],
+            [
+                'word' => 'considerable',
+                'synonyms_pools_id' => 1,
+            ],
+            [
+                'word' => 'full',
+                'synonyms_pools_id' => 1,
+            ],
+            [
+                'word' => 'huge',
+                'synonyms_pools_id' => 1,
+            ],
+            [
                 'word' => 'big',
                 'synonyms_pools_id' => 2,
+            ],
+            [
+                'word' => 'considerable',
+                'synonyms_pools_id' => 2,
+            ],
+            [
+                'word' => 'leading',
+                'synonyms_pools_id' => 2,
+            ],
+            [
+                'word' => 'main',
+                'synonyms_pools_id' => 2,
             ]
+            
         ]);
     }
 }

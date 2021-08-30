@@ -17,10 +17,10 @@ class WordController extends Controller
      * 
      * @return Object
      */
-    public function index()
+    public function index(Request $request)
     {
         $wordService = new WordService;
-        return $wordService->allWords();
+        return $wordService->allWords($request);
     }
 
     /**
