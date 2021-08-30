@@ -22,6 +22,7 @@ class CreateWordsTable extends Migration
         Schema::create('words', function (Blueprint $table) {
             $table->id();
             $table->string('word',256);
+            $table->index('word');
             $table->unsignedBigInteger('synonyms_pools_id');
             $table->foreign('synonyms_pools_id')->references('id')->on('synonyms_pools');
             $table->timestamps();

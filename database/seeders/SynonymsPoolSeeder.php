@@ -21,11 +21,11 @@ class SynonymsPoolSeeder extends Seeder
         DB::table('synonyms_pools')->insert([
             [
                 'meaning' => 'Adj : large, great',
-                'synonyms' => '["colossal", "fat", "considerable", "full", "huge"]'
+                'synonyms' => '["big", "colossal", "fat", "considerable", "full", "huge"]'
             ],
             [
                 'meaning' => 'Adj : important',
-                'synonyms' => '["considerable", "leading", "main"]'
+                'synonyms' => '["big", "considerable", "leading", "main"]'
             ]
         ]);
     }

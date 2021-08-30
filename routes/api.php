@@ -26,7 +26,7 @@ Route::group([
     'prefix' => 'synonyms'
 ], function ($router) {
     Route::get('/', [SynonymsPoolController::class, 'find']);
-    Route::post('/', [SynonymsPoolController::class, 'store']);
+    Route::post('/', [SynonymsPoolController::class, 'store'])->middleware(('tokenVerified'));
 });
 
 // Route for the APIs related to words
@@ -40,5 +40,5 @@ Route::group([
 Route::group([
     'prefix' => 'auth-token'
 ], function ($router) {
-    Route::post('/', [AuthTokenController::class, 'store']);
+    Route::post('/', [AuthTokenController::class, 'store'])->middleware(('tokenVerified'));
 });

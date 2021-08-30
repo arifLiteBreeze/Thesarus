@@ -37,13 +37,21 @@ class WordService
      */
     public function searchSynonyms($word)
     {
-        $synonyms = array();
+        $synonyms = array('data'=>array(), 'relatedWords'=>array());
         $synonymsList = Word::where('word', $word)->with('synonyms_pools')->get();
-        if($synonymsList->count() == 0)
+        $synonyms['relatedWords']= $this->findRelatedWords($word);
+        foreach($synonymsList as $synonymsSelected)
         {
-            $synonyms['relatedWords']= $this->findRelatedWords($word);
+            $poolResponse = array();
+            $poolDetails = json_decode($synonymsSelected->synonyms_pools);
+            $poolResponse['id'] = $poolDetails->id;
+            $poolResponse['meaning'] = $poolDetails->meaning;
+            $poolResponse['synonyms'] = array_diff(json_decode($poolDetails->synonyms)
+        , array($word));
+            $synonyms['data'][] = $poolResponse;
+
         }
-        $synonyms['data'] = $synonymsList;
+        //$synonyms['data'] = $synonymsList;
         $synonyms['total'] = $synonymsList->count();
         return (object)$synonyms;
     }
@@ -59,7 +67,7 @@ class WordService
      */
     public function findRelatedWords($word)
     {
-        return Word::where('word', 'LIKE' ,'%'.$word.'%')->with('synonyms_pools')->get();
+        return Word::where('word','!=',$word)->where('word', 'LIKE' ,'%'.$word.'%')->get();
     }
 
     /**
@@ -71,9 +79,16 @@ class WordService
      * 
      * @return Array
      */
-    public function allWords()
+    public function allWords($request)
     {
-        return Word::select('word')->groupBy('word')->orderBy('word', 'ASC')->paginate(15);
+        $wordList = Word::select('word')->where(function($query) use ($request)
+        {
+            if ($request->word) {
+                $query->where('word','LIKE' ,'%'.$request->word.'%');
+            }
+        })->groupBy('word')->orderBy('word', 'ASC')->paginate(15);
+        $wordList->appends(['word' => $request->word]);
+        return $wordList;
     }
 
     /**
