@@ -2,7 +2,7 @@
     <h3>Installation steps</h3>
     <ul>
         <li>Clone repository and checkout to master</li>
-        <li>Navidate to product folder</li>
+        <li>Navigate to product folder</li>
         <li>Copy the .env.example and rename to .env</li>
         <li>Update DB credentials on env file</li>
         <li>Run composer install for adding vendor packages</li>
