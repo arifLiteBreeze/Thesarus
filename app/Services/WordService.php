@@ -4,18 +4,21 @@ namespace App\Services;
 use App\Models\Word;
 use App\Models\SynonymsPool;
 
-class WordService
+/**
+ * Service for Thesaurus implementation
+ * 
+ * @author Arif C A <aca@lbit.in>
+ */
+class WordService implements Thesaurus
 {
     /**
      * Insert data into company
      * 
-     * @author Arif C A <aca@lbit.in>
+     * @param Object $request
      * 
-     * @param Array
-     * 
-     * @return object
+     * @return Array
      */
-    public function save($request)
+    public function addSynonyms(object $request):array
     {
         $wordsAdded = array();
         $synonymsPoolData = $this->createSynonymsPool($request);
@@ -29,13 +32,11 @@ class WordService
     /**
      * Fetch the list of synonyms of a word
      * 
-     * @author Arif C A <aca@lbit.in>
-     * 
      * @param String word
      * 
-     * @return Array
+     * @return Object
      */
-    public function searchSynonyms($word)
+    public function getSynonyms(string $word):object
     {
         $synonyms = array('data'=>array(), 'relatedWords'=>array());
         $synonymsList = Word::where('word', $word)->with('synonyms_pools')->get();
@@ -51,15 +52,12 @@ class WordService
             $synonyms['data'][] = $poolResponse;
 
         }
-        //$synonyms['data'] = $synonymsList;
         $synonyms['total'] = $synonymsList->count();
         return (object)$synonyms;
     }
 
     /**
      * Fetch the list of synonyms of a related word
-     * 
-     * @author Arif C A <aca@lbit.in>
      * 
      * @param String word
      * 
@@ -73,13 +71,11 @@ class WordService
     /**
      * Fetch the list of all words
      * 
-     * @author Arif C A <aca@lbit.in>
+     * @param Object $object
      * 
-     * @param Void
-     * 
-     * @return Array
+     * @return Object
      */
-    public function allWords($request)
+    public function getWords(object $request):object
     {
         $wordList = Word::select('word')->where(function($query) use ($request)
         {
@@ -94,9 +90,7 @@ class WordService
     /**
      * Insert data into synonyms_pools table
      * 
-     * @author Arif C A <aca@lbit.in>
-     * 
-     * @param Array
+     * @param Object $request
      * 
      * @return object
      */
